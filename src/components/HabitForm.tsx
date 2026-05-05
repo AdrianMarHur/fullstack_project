@@ -8,14 +8,20 @@ interface HabitFormProps {
 function HabitForm({ onAdd }: HabitFormProps) {
   const [name, setName] = useState("")
   const [frequency, setFrequency] = useState<"daily" | "weekly">("daily")
+  const [error, setError] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!name.trim()) return
+    if (!name.trim()) {
+      setError("El nombre del hábito es obligatorio")
+      return
+    }
+
+    setError("")
 
     const newHabit: Habit = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID(),
       name,
       frequency,
       createdAt: new Date().toISOString(),
@@ -27,25 +33,41 @@ function HabitForm({ onAdd }: HabitFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-4 rounded-xl shadow mb-4">
-      <h2 className="text-lg font-semibold mb-2">Crear hábito</h2>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-4 rounded-xl shadow mb-4"
+    >
+      <h2 className="text-lg font-semibold mb-2">
+        Crear hábito
+      </h2>
 
       <input
         type="text"
         placeholder="Nombre del hábito"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => {
+          setName(e.target.value)
+          setError("")
+        }}
         className="w-full border p-2 rounded mb-2"
       />
 
       <select
         value={frequency}
-        onChange={(e) => setFrequency(e.target.value as "daily" | "weekly")}
+        onChange={(e) =>
+          setFrequency(e.target.value as "daily" | "weekly")
+        }
         className="w-full border p-2 rounded mb-2"
       >
         <option value="daily">Diario</option>
         <option value="weekly">Semanal</option>
       </select>
+
+      {error && (
+        <p className="text-red-500 text-sm mb-2">
+          {error}
+        </p>
+      )}
 
       <button
         type="submit"
