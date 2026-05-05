@@ -2,7 +2,7 @@ import { useState } from "react"
 import type { Habit } from "../types/habit"
 
 interface HabitFormProps {
-  onAdd: (habit: Habit) => void
+  onAdd: (habit: Omit<Habit, "id" | "createdAt" | "completed">) => void
 }
 
 function HabitForm({ onAdd }: HabitFormProps) {
@@ -19,15 +19,8 @@ function HabitForm({ onAdd }: HabitFormProps) {
     }
 
     setError("")
+    onAdd({ name, frequency })
 
-    const newHabit: Habit = {
-      id: crypto.randomUUID(),
-      name,
-      frequency,
-      createdAt: new Date().toISOString(),
-    }
-
-    onAdd(newHabit)
     setName("")
     setFrequency("daily")
   }
@@ -35,9 +28,9 @@ function HabitForm({ onAdd }: HabitFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-4 rounded-xl shadow mb-4"
+      className="w-full bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow mb-6"
     >
-      <h2 className="text-lg font-semibold mb-2">
+      <h2 className="text-lg font-semibold mb-2 dark:text-white">
         Crear hábito
       </h2>
 
@@ -49,7 +42,7 @@ function HabitForm({ onAdd }: HabitFormProps) {
           setName(e.target.value)
           setError("")
         }}
-        className="w-full border p-2 rounded mb-2"
+        className="w-full border p-2 rounded mb-2 bg-white dark:bg-gray-700 dark:text-white"
       />
 
       <select
@@ -57,7 +50,7 @@ function HabitForm({ onAdd }: HabitFormProps) {
         onChange={(e) =>
           setFrequency(e.target.value as "daily" | "weekly")
         }
-        className="w-full border p-2 rounded mb-2"
+        className="w-full border p-2 rounded mb-2 bg-white dark:bg-gray-700 dark:text-white"
       >
         <option value="daily">Diario</option>
         <option value="weekly">Semanal</option>
@@ -71,7 +64,8 @@ function HabitForm({ onAdd }: HabitFormProps) {
 
       <button
         type="submit"
-        className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
+        disabled={!name.trim()}
+        className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 disabled:opacity-50 transition"
       >
         Añadir hábito
       </button>

@@ -1,39 +1,41 @@
 # HabitFlow — Aplicación de seguimiento de hábitos
 
-HabitFlow es una aplicación web diseñada para ayudar a los usuarios a crear, gestionar y realizar un seguimiento de sus hábitos diarios y semanales. La aplicación permite marcar hábitos como completados cada día y visualizar el progreso mediante rachas, calendarios y estadísticas sencillas, fomentando la constancia y la mejora personal.
+HabitFlow es una aplicación web diseñada para ayudar a los usuarios a crear y gestionar hábitos diarios y semanales de forma sencilla. La aplicación permite marcar hábitos como completados y visualizar el progreso general, fomentando la constancia y la productividad personal.
 
 ## Problema que intenta resolver
 
-Muchas personas quieren adquirir hábitos positivos como hacer ejercicio, estudiar de forma regular o mantener rutinas saludables, pero tienen dificultades para mantener la constancia a largo plazo. La falta de motivación y de una herramienta clara para visualizar el progreso hace que estos hábitos se abandonen fácilmente.
+Muchas personas quieren adquirir hábitos positivos, como hacer ejercicio, estudiar o mantener rutinas saludables, pero tienen dificultades para mantener la constancia a lo largo del tiempo. 
 
-HabitFlow busca resolver este problema ofreciendo una forma sencilla y visual de registrar hábitos y ver el progreso diario, ayudando al usuario a mantenerse motivado mediante rachas y estadísticas.
+La falta de herramientas simples y visuales para registrar el progreso diario hace que estos hábitos se abandonen con facilidad.
+
+HabitFlow busca resolver este problema proporcionando una interfaz clara y directa en la que el usuario puede gestionar sus hábitos, ver cuáles ha completado y seguir su progreso de forma visual.
 
 ## Usuario objetivo
 
-La aplicación está dirigida a personas que desean mejorar sus rutinas diarias mediante el seguimiento de hábitos. Puede ser utilizada por estudiantes, trabajadores o cualquier persona interesada en la organización personal y la mejora continua, sin necesidad de tener conocimientos técnicos.
+La aplicación está dirigida a personas que desean mejorar sus rutinas diarias mediante el seguimiento de hábitos. Puede ser utilizada por estudiantes, trabajadores o cualquier persona interesada en la organización personal y la mejora continua, sin necesidad de conocimientos técnicos.
 
 ## Funcionalidades principales
 
-- Crear hábitos diarios o semanales.
-- Editar y eliminar hábitos existentes.
-- Marcar hábitos como completados cada día.
-- Visualizar el progreso mediante un calendario de cumplimiento.
-- Mostrar la racha actual y la racha máxima de cada hábito.
-- Calcular y mostrar el porcentaje de cumplimiento de los hábitos.
+- Crear hábitos con frecuencia diaria o semanal.
+- Eliminar hábitos existentes.
+- Marcar hábitos como completados o pendientes.
+- Visualizar los hábitos divididos en:
+  - Pendientes
+  - Completados
+- Ver el progreso general mediante una barra de progreso.
+- Interfaz responsive adaptable a distintos dispositivos.
+- Modo oscuro para mejorar la experiencia de usuario.
 
-## Funcionalidades opcionales
+## Funcionalidades adicionales
 
+- Confirmación antes de eliminar hábitos.
+- Feedback visual del estado de los hábitos (completado/no completado).
+- Diseño claro y minimalista para facilitar el uso.
+
+## Posibles mejoras
+
+- Edición de hábitos existentes.
 - Clasificación de hábitos por categorías.
-- Filtros para mostrar hábitos activos o inactivos.
-- Página de estadísticas generales del usuario.
-- Reordenar hábitos manualmente.
-- Añadir animaciones para mejorar la experiencia de usuario.
-
-## Posibles mejoras futuras
-
-- Registro de usuarios y autenticación.
+- Persistencia del modo oscuro.
+- Autenticación de usuarios.
 - Sincronización de datos entre dispositivos.
-- Sistema de recordatorios y notificaciones.
-- Gráficas avanzadas de progreso.
-- Exportación de datos del usuario.
-

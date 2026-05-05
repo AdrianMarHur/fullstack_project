@@ -1,46 +1,85 @@
-import { useState, useCallback, useEffect, useMemo } from "react"
+import { useState, useEffect, useCallback, useMemo } from "react"
 import type { Habit } from "../types/habit"
+import {
+  fetchHabits,
+  createHabitApi,
+  toggleHabitApi,
+  deleteHabitApi,
+} from "../api/client"
 
 export function useHabits() {
   const [habits, setHabits] = useState<Habit[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const mockHabits: Habit[] = [
-      {
-        id: "1",
-        name: "Leer",
-        frequency: "daily",
-        createdAt: new Date().toISOString(),
-        completed: false,
-      },
-    ]
-    setHabits(mockHabits)
-  }, [])
+    async function loadHabits() {
+      try {
+        setError(null)
+        const data = await fetchHabits()
+        setHabits(data)
+      } catch {
+        setError("Error al cargar hábitos")
+      } finally {
+        setLoading(false)
+      }
+    }
 
-  const addHabit = useCallback((habit: Habit) => {
-    setHabits((prev) => [...prev, habit])
+    loadHabits()
   }, [])
+  const addHabit = useCallback(async (
+    habit: Omit<Habit, "id" | "createdAt" | "completed">
+  ) => {
+    try {
+      setError(null)
 
-  const toggleHabit = useCallback((id: string) => {
-    setHabits((prev) =>
-      prev.map((habit) =>
-        habit.id === id
-          ? { ...habit, completed: !habit.completed }
-          : habit
+      const newHabit = await createHabitApi(habit)
+      setHabits((prev) => [...prev, newHabit])
+
+    } catch {
+      setError("Error al crear hábito")
+    }
+  }, [])
+  const toggleHabit = useCallback(async (id: string) => {
+    try {
+      setError(null)
+
+      const updated = await toggleHabitApi(id)
+
+      setHabits((prev) =>
+        prev.map((h) => (h.id === id ? updated : h))
       )
-    )
+
+    } catch {
+      setError("Error al actualizar hábito")
+    }
   }, [])
 
-  const completedCount = useMemo(() => {
-    return habits.filter((h) => h.completed).length
-  }, [habits])
+  const deleteHabit = useCallback(async (id: string) => {
+    try {
+      setError(null)
+
+      await deleteHabitApi(id)
+
+      setHabits((prev) => prev.filter((h) => h.id !== id))
+    } catch {
+      setError("Error al eliminar hábito")
+    }
+  }, [])
+  const completedCount = useMemo(
+    () => habits.filter((h) => h.completed).length,
+    [habits]
+  )
 
   const totalCount = habits.length
 
   return {
     habits,
+    loading,
+    error,
     addHabit,
     toggleHabit,
+    deleteHabit,
     completedCount,
     totalCount,
   }
