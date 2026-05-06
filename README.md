@@ -1,75 +1,50 @@
-# React + TypeScript + Vite
+# HabitFlow 🌱
 
-https://trello.com/b/k8Ee8UEV/habitflow
+HabitFlow es una aplicación web fullstack para gestionar hábitos personales. Permite crear hábitos diarios o semanales, marcarlos como completados y visualizar el progreso de forma sencilla.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Demo
 
-Currently, two official plugins are available:
+🔗 https://fullstack-project-flame.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologías
 
-## React Compiler
+- **Frontend**: React, TypeScript, Tailwind CSS, React Router
+- **Backend**: Node.js, Express
+- **Despliegue**: Vercel
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Estructura del proyecto
+habitflow/
+├── src/              # Frontend React
+│   ├── api/          # Cliente de API
+│   ├── components/   # Componentes reutilizables
+│   ├── context/      # Estado global
+│   ├── hooks/        # Custom hooks
+│   ├── pages/        # Páginas
+│   └── types/        # Tipos TypeScript
+├── server/           # Backend Express
+│   ├── routes/
+│   ├── controllers/
+│   └── services/
+└── docs/             # Documentación del proyecto
 
-## Expanding the ESLint configuration
+## Instalación
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Instalar dependencias
+npm install
+cd server && npm install && cd ..
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Variables de entorno
+echo "VITE_API_URL=http://localhost:3000/api" > .env
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Arrancar
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Documentación
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+La documentación completa del proyecto está disponible en la carpeta [`docs/`](docs/).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Organización
+
+Proyecto gestionado con Trello: [Ver tablero](https://trello.com/b/k8Ee8UEV/habitflow)

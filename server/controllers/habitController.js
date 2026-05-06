@@ -3,8 +3,6 @@ import {
   addHabit,
   toggleHabit,
   removeHabit,
-  addRecord,
-  getRecordsByHabit,
 } from "../services/habitService.js"
 
 export function getHabits(req, res) {
@@ -14,6 +12,7 @@ export function getHabits(req, res) {
     res.status(500).json({ error: "Error interno del servidor" })
   }
 }
+
 export function createHabit(req, res) {
   try {
     const { name, frequency } = req.body
@@ -43,6 +42,7 @@ export function updateHabit(req, res) {
     res.status(500).json({ error: "Error interno del servidor" })
   }
 }
+
 export function deleteHabit(req, res) {
   try {
     const { id } = req.params
@@ -53,24 +53,6 @@ export function deleteHabit(req, res) {
     }
 
     res.status(200).json({ message: "Eliminado correctamente" })
-  } catch {
-    res.status(500).json({ error: "Error interno del servidor" })
-  }
-}
-export function getHabitRecords(req, res) {
-  try {
-    const { id } = req.params
-    const records = getRecordsByHabit(id)
-    res.status(200).json(records)
-  } catch {
-    res.status(500).json({ error: "Error interno del servidor" })
-  }
-}
-export function createHabitRecord(req, res) {
-  try {
-    const { id } = req.params
-    const record = addRecord(id)
-    res.status(201).json(record)
   } catch {
     res.status(500).json({ error: "Error interno del servidor" })
   }

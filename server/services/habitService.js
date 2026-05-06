@@ -1,5 +1,4 @@
 let habits = []
-let records = []
 
 export function getAllHabits() {
   return habits
@@ -11,27 +10,11 @@ export function addHabit({ name, frequency }) {
     name,
     frequency,
     createdAt: new Date().toISOString(),
-    completed: false // ✅ mantenemos de momento
+    completed: false
   }
 
   habits.push(newHabit)
   return newHabit
-}
-
-export function addRecord(habitId) {
-  const newRecord = {
-    id: crypto.randomUUID(),
-    habitId,
-    date: new Date().toISOString().split("T")[0],
-    completed: true,
-  }
-
-  records.push(newRecord)
-  return newRecord
-}
-
-export function getRecordsByHabit(habitId) {
-  return records.filter((r) => r.habitId === habitId)
 }
 
 export function toggleHabit(id) {
