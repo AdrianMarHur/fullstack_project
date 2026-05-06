@@ -10,6 +10,6 @@ app.use(express.json())
 app.get("/", (req, res) => {
   res.send("API de HabitFlow funcionando correctamente")
 })
-app.use("/", habitRoutes)
+app.use("/api", habitRoutes)
 
 export default app
